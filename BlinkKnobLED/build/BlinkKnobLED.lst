@@ -1,0 +1,286 @@
+ARM GAS  /var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.eabi_attribute 28, 1
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 2
+  10              		.eabi_attribute 34, 1
+  11              		.eabi_attribute 18, 4
+  12              		.file	"BlinkKnobLED.cpp"
+  13              		.text
+  14              		.section	.text._ZN5daisy9ParameterD2Ev,"axG",%progbits,_ZN5daisy9ParameterD5Ev,comdat
+  15              		.align	1
+  16              		.p2align 2,,3
+  17              		.weak	_ZN5daisy9ParameterD2Ev
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv5-d16
+  24              	_ZN5daisy9ParameterD2Ev:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 7047     		bx	lr
+  30              		.weak	_ZN5daisy9ParameterD1Ev
+  31              		.thumb_set _ZN5daisy9ParameterD1Ev,_ZN5daisy9ParameterD2Ev
+  32 0002 00BF     		.section	.text._ZN5daisy10DaisyPatchD2Ev,"axG",%progbits,_ZN5daisy10DaisyPatchD5Ev,comdat
+  33              		.align	1
+  34              		.p2align 2,,3
+  35              		.weak	_ZN5daisy10DaisyPatchD2Ev
+  36              		.syntax unified
+  37              		.thumb
+  38              		.thumb_func
+  39              		.fpu fpv5-d16
+  41              	_ZN5daisy10DaisyPatchD2Ev:
+  42              		@ args = 0, pretend = 0, frame = 0
+  43              		@ frame_needed = 0, uses_anonymous_args = 0
+  44              		@ link register save eliminated.
+  45 0000 7047     		bx	lr
+  47              		.weak	_ZN5daisy10DaisyPatchD1Ev
+  48              		.thumb_set _ZN5daisy10DaisyPatchD1Ev,_ZN5daisy10DaisyPatchD2Ev
+  49 0002 00BF     		.section	.rodata.main.str1.4,"aMS",%progbits,1
+  50              		.align	2
+  51              	.LC0:
+  52 0000 626C696E 		.ascii	"blinking LED\000"
+  52      6B696E67 
+  52      204C4544 
+  52      00
+  53 000d 000000   		.align	2
+  54              	.LC1:
+  55 0010 256400   		.ascii	"%d\000"
+  56              		.section	.text.startup.main,"ax",%progbits
+  57              		.align	1
+  58              		.p2align 2,,3
+ARM GAS  /var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s 			page 2
+
+
+  59              		.global	main
+  60              		.syntax unified
+  61              		.thumb
+  62              		.thumb_func
+  63              		.fpu fpv5-d16
+  65              	main:
+  66              		@ args = 0, pretend = 0, frame = 64
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68 0000 70B5     		push	{r4, r5, r6, lr}
+  69 0002 444C     		ldr	r4, .L9
+  70 0004 444D     		ldr	r5, .L9+4
+  71 0006 A4F18C00 		sub	r0, r4, #140
+  72 000a 2DED028B 		vpush.64	{d8}
+  73 000e 92B0     		sub	sp, sp, #72
+  74 0010 FFF7FEFF 		bl	_ZN5daisy10DaisyPatch4InitEv
+  75 0014 DFED410A 		vldr.32	s1, .L9+8
+  76 0018 0AAE     		add	r6, sp, #40
+  77 001a 9FED410A 		vldr.32	s0, .L9+12
+  78 001e 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+  79 0020 0FC6     		stmia	r6!, {r0, r1, r2, r3}
+  80 0022 94E80700 		ldm	r4, {r0, r1, r2}
+  81 0026 86E80700 		stm	r6, {r0, r1, r2}
+  82 002a 0022     		movs	r2, #0
+  83 002c 0AA9     		add	r1, sp, #40
+  84 002e 3D48     		ldr	r0, .L9+16
+  85 0030 02AE     		add	r6, sp, #8
+  86 0032 FFF7FEFF 		bl	_ZN5daisy9Parameter4InitENS_13AnalogControlEffNS0_5CurveE
+  87 0036 A4F19C00 		sub	r0, r4, #156
+  88 003a FFF7FEFF 		bl	_ZN5daisy10DaisyPatch8StartAdcEv
+  89 003e A4F19C00 		sub	r0, r4, #156
+  90 0042 0021     		movs	r1, #0
+  91 0044 FFF7FEFF 		bl	_ZN5daisy10DaisyPatch12GetCtrlValueENS0_4CtrlE
+  92 0048 B0EE408A 		vmov.f32	s16, s0
+  93 004c 04F1E400 		add	r0, r4, #228
+  94 0050 0121     		movs	r1, #1
+  95 0052 FFF7FEFF 		bl	_ZN5daisy11OledDisplay4FillEb
+  96 0056 344B     		ldr	r3, .L9+20
+  97 0058 FDEEC87A 		vcvt.s32.f32	s15, s16
+  98 005c 0FCB     		ldm	r3, {r0, r1, r2, r3}
+  99 005e 07C6     		stmia	r6!, {r0, r1, r2}
+ 100 0060 17EE902A 		vmov	r2, s15	@ int
+ 101 0064 3370     		strb	r3, [r6]
+ 102 0066 3149     		ldr	r1, .L9+24
+ 103 0068 0AA8     		add	r0, sp, #40
+ 104 006a FFF7FEFF 		bl	sprintf
+ 105 006e 0522     		movs	r2, #5
+ 106 0070 04F1E400 		add	r0, r4, #228
+ 107 0074 0126     		movs	r6, #1
+ 108 0076 1146     		mov	r1, r2
+ 109 0078 FFF7FEFF 		bl	_ZN5daisy11OledDisplay9SetCursorEhh
+ 110 007c 0022     		movs	r2, #0
+ 111 007e 2C4B     		ldr	r3, .L9+28
+ 112 0080 02A9     		add	r1, sp, #8
+ 113 0082 0092     		str	r2, [sp]
+ 114 0084 04F1E400 		add	r0, r4, #228
+ 115 0088 0CCB     		ldm	r3, {r2, r3}
+ 116 008a FFF7FEFF 		bl	_ZN5daisy11OledDisplay11WriteStringEPc7FontDefb
+ARM GAS  /var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s 			page 3
+
+
+ 117 008e 6A78     		ldrb	r2, [r5, #1]	@ zero_extendqisi2
+ 118 0090 0521     		movs	r1, #5
+ 119 0092 2848     		ldr	r0, .L9+32
+ 120 0094 D2F14002 		rsbs	r2, r2, #64
+ 121 0098 48BF     		it	mi
+ 122 009a 0132     		addmi	r2, r2, #1
+ 123 009c C2F34702 		ubfx	r2, r2, #1, #8
+ 124 00a0 FFF7FEFF 		bl	_ZN5daisy11OledDisplay9SetCursorEhh
+ 125 00a4 0023     		movs	r3, #0
+ 126 00a6 0AA9     		add	r1, sp, #40
+ 127 00a8 2248     		ldr	r0, .L9+32
+ 128 00aa 0093     		str	r3, [sp]
+ 129 00ac 95E80C00 		ldm	r5, {r2, r3}
+ 130 00b0 FFF7FEFF 		bl	_ZN5daisy11OledDisplay11WriteStringEPc7FontDefb
+ 131 00b4 1F48     		ldr	r0, .L9+32
+ 132 00b6 FFF7FEFF 		bl	_ZN5daisy11OledDisplay6UpdateEv
+ 133              	.L7:
+ 134 00ba 3146     		mov	r1, r6
+ 135 00bc 1E48     		ldr	r0, .L9+36
+ 136 00be FFF7FEFF 		bl	_ZN5daisy9DaisySeed6SetLedEb
+ 137 00c2 1848     		ldr	r0, .L9+16
+ 138 00c4 FFF7FEFF 		bl	_ZN5daisy9Parameter7ProcessEv
+ 139 00c8 FDEEC07A 		vcvt.s32.f32	s15, s0
+ 140 00cc 1749     		ldr	r1, .L9+24
+ 141 00ce 0AA8     		add	r0, sp, #40
+ 142 00d0 86F00106 		eor	r6, r6, #1
+ 143 00d4 17EE902A 		vmov	r2, s15	@ int
+ 144 00d8 17EE904A 		vmov	r4, s15	@ int
+ 145 00dc FFF7FEFF 		bl	sprintf
+ 146 00e0 6A78     		ldrb	r2, [r5, #1]	@ zero_extendqisi2
+ 147 00e2 0521     		movs	r1, #5
+ 148 00e4 1348     		ldr	r0, .L9+32
+ 149 00e6 D2F14002 		rsbs	r2, r2, #64
+ 150 00ea 48BF     		it	mi
+ 151 00ec 0132     		addmi	r2, r2, #1
+ 152 00ee C2F34702 		ubfx	r2, r2, #1, #8
+ 153 00f2 FFF7FEFF 		bl	_ZN5daisy11OledDisplay9SetCursorEhh
+ 154 00f6 0023     		movs	r3, #0
+ 155 00f8 0AA9     		add	r1, sp, #40
+ 156 00fa 0E48     		ldr	r0, .L9+32
+ 157 00fc 0093     		str	r3, [sp]
+ 158 00fe 95E80C00 		ldm	r5, {r2, r3}
+ 159 0102 FFF7FEFF 		bl	_ZN5daisy11OledDisplay11WriteStringEPc7FontDefb
+ 160 0106 0B48     		ldr	r0, .L9+32
+ 161 0108 FFF7FEFF 		bl	_ZN5daisy11OledDisplay6UpdateEv
+ 162 010c 2046     		mov	r0, r4
+ 163 010e FFF7FEFF 		bl	dsy_system_delay
+ 164 0112 D2E7     		b	.L7
+ 165              	.L10:
+ 166              		.align	2
+ 167              	.L9:
+ 168 0114 8C000000 		.word	.LANCHOR0+140
+ 169 0118 00000000 		.word	Font_16x26
+ 170 011c 00004842 		.word	1112014848
+ 171 0120 0000FA44 		.word	1157234688
+ 172 0124 00000000 		.word	.LANCHOR1
+ 173 0128 00000000 		.word	.LC0
+ARM GAS  /var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s 			page 4
+
+
+ 174 012c 10000000 		.word	.LC1
+ 175 0130 00000000 		.word	Font_7x10
+ 176 0134 80010000 		.word	.LANCHOR0+384
+ 177 0138 00000000 		.word	.LANCHOR0
+ 179              		.section	.text.startup._GLOBAL__sub_I_patch,"ax",%progbits
+ 180              		.align	1
+ 181              		.p2align 2,,3
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 185              		.fpu fpv5-d16
+ 187              	_GLOBAL__sub_I_patch:
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190 0000 064A     		ldr	r2, .L13
+ 191 0002 0749     		ldr	r1, .L13+4
+ 192 0004 0748     		ldr	r0, .L13+8
+ 193 0006 08B5     		push	{r3, lr}
+ 194 0008 FFF7FEFF 		bl	__aeabi_atexit
+ 195 000c 034A     		ldr	r2, .L13
+ 196 000e 0649     		ldr	r1, .L13+12
+ 197 0010 0648     		ldr	r0, .L13+16
+ 198 0012 BDE80840 		pop	{r3, lr}
+ 199 0016 FFF7FEBF 		b	__aeabi_atexit
+ 200              	.L14:
+ 201 001a 00BF     		.align	2
+ 202              	.L13:
+ 203 001c 00000000 		.word	__dso_handle
+ 204 0020 00000000 		.word	_ZN5daisy10DaisyPatchD1Ev
+ 205 0024 00000000 		.word	.LANCHOR0
+ 206 0028 00000000 		.word	_ZN5daisy9ParameterD1Ev
+ 207 002c 00000000 		.word	.LANCHOR1
+ 209              		.section	.init_array,"aw",%init_array
+ 210              		.align	2
+ 211 0000 00000000 		.word	_GLOBAL__sub_I_patch(target1)
+ 212              		.global	ratectrl
+ 213              		.global	patch
+ 214              		.section	.bss.patch,"aw",%nobits
+ 215              		.align	2
+ 216              		.set	.LANCHOR0,. + 0
+ 219              	patch:
+ 220 0000 00000000 		.space	408
+ 220      00000000 
+ 220      00000000 
+ 220      00000000 
+ 220      00000000 
+ 221              		.section	.bss.ratectrl,"aw",%nobits
+ 222              		.align	2
+ 223              		.set	.LANCHOR1,. + 0
+ 226              	ratectrl:
+ 227 0000 00000000 		.space	52
+ 227      00000000 
+ 227      00000000 
+ 227      00000000 
+ 227      00000000 
+ 228              		.hidden	__dso_handle
+ 229              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 9-2019-q4-major) 9.2.1 20191025 (release) [ARM
+ARM GAS  /var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s 			page 5
+
+
+ARM GAS  /var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 BlinkKnobLED.cpp
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:15     .text._ZN5daisy9ParameterD2Ev:0000000000000000 $t
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:24     .text._ZN5daisy9ParameterD2Ev:0000000000000000 _ZN5daisy9ParameterD2Ev
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:24     .text._ZN5daisy9ParameterD2Ev:0000000000000000 _ZN5daisy9ParameterD1Ev
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:33     .text._ZN5daisy10DaisyPatchD2Ev:0000000000000000 $t
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:41     .text._ZN5daisy10DaisyPatchD2Ev:0000000000000000 _ZN5daisy10DaisyPatchD2Ev
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:41     .text._ZN5daisy10DaisyPatchD2Ev:0000000000000000 _ZN5daisy10DaisyPatchD1Ev
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:50     .rodata.main.str1.4:0000000000000000 $d
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:57     .text.startup.main:0000000000000000 $t
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:65     .text.startup.main:0000000000000000 main
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:168    .text.startup.main:0000000000000114 $d
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:180    .text.startup._GLOBAL__sub_I_patch:0000000000000000 $t
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:187    .text.startup._GLOBAL__sub_I_patch:0000000000000000 _GLOBAL__sub_I_patch
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:203    .text.startup._GLOBAL__sub_I_patch:000000000000001c $d
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:210    .init_array:0000000000000000 $d
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:226    .bss.ratectrl:0000000000000000 ratectrl
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:219    .bss.patch:0000000000000000 patch
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:215    .bss.patch:0000000000000000 $d
+/var/folders/8d/9_h4bwrs4t923hh6vkkb02fw0000gn/T//cc3BxL0e.s:222    .bss.ratectrl:0000000000000000 $d
+                           .group:0000000000000000 _ZN5daisy9ParameterD5Ev
+                           .group:0000000000000000 _ZN5daisy10DaisyPatchD5Ev
+
+UNDEFINED SYMBOLS
+_ZN5daisy10DaisyPatch4InitEv
+_ZN5daisy9Parameter4InitENS_13AnalogControlEffNS0_5CurveE
+_ZN5daisy10DaisyPatch8StartAdcEv
+_ZN5daisy10DaisyPatch12GetCtrlValueENS0_4CtrlE
+_ZN5daisy11OledDisplay4FillEb
+sprintf
+_ZN5daisy11OledDisplay9SetCursorEhh
+_ZN5daisy11OledDisplay11WriteStringEPc7FontDefb
+_ZN5daisy11OledDisplay6UpdateEv
+_ZN5daisy9DaisySeed6SetLedEb
+_ZN5daisy9Parameter7ProcessEv
+dsy_system_delay
+Font_16x26
+Font_7x10
+__aeabi_atexit
+__dso_handle
