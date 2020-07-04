@@ -1,10 +1,12 @@
 # Daisy
-personal daisy development
+personal daisy development.
 
-here is another line
+here is another line.
 
 ## and another header
 
 ```
-and some code
-'''
+and some code.
+```
+
+with some more text after it. 
