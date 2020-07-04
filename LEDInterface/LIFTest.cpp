@@ -82,7 +82,7 @@ void UpdateInterface()
 	FontDef font_ = Font_6x8;
 
     patch.DebounceControls(); // a patch obj should really be passed in...
-    patch.UpdateAnalogControls(); // but is that too much memory waste?
+    patch.UpdateAnalogControls(); // but is that too much memory waste? how about a pointer to a patch obj?
 
 	for (int i=0;i<NUM_LABELS;i++)
 	{
