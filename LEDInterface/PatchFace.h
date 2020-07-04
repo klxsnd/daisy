@@ -1,16 +1,16 @@
 #pragam once
-#ifndef KLX_LED_INTERFACE_H
-#define KLX_LED_INTERFACE_H /**< Macro */
+#ifndef PATCHFACE_H
+#define PATCHFACE_H /**< Macro */
 
-#ifndef SSD1309_HEIGHT
-#define SSD1309_HEIGHT 64 /**< SSD1309 height in pixels */
+#ifndef PF_LED_HEIGHT
+#define PF_LED_HEIGHT SSD1309_HEIGHT // 64
 #endif
 
-#ifndef SSD1309_WIDTH
-#define SSD1309_WIDTH 128 /**< SSD1309 width in pixels */
+#ifndef PF_LED_WIDTH
+#define PF_LED_WIDTH SSD1309_WIDTH // 128
 #endif
 
-# define KLX_FIELD_BUFFER_MAX 32
+const int PF_BUFFER_MAX_LEN PF_LED_WIDTH;
 
 namespace daisy
 {
