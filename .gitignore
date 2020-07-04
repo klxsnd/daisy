@@ -1,1 +1,4 @@
-build/
+._.DS_Store
+.DS_Store
+/**/build
+bin/
