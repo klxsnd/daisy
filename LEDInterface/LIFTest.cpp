@@ -28,7 +28,7 @@ string labels[NUM_LABELS] =
 Parameter values[NUM_LABELS]; // values fr ctrl knobs assoc w/ these labels
 
 
-void UpdateLedTest(); // the whole 'above' main() thing. defined below
+//void UpdateLedTest(); // the whole 'above' main() thing. defined below
 void UpdateInterface(); // the whole 'above' main() thing. defined below
 
 int main (void)
@@ -62,17 +62,17 @@ void InterfaceWrite( int x_, int y_, char* v_, FontDef f_, OledDisplay d_)
 	//d_.Update();
 }
 
-void UpdateLedTest()
-{
-	int x, y; // coords for writing to the LED
-	patch.display.Fill(PF_DISP_MODE); // "dark" mode
-	
-	string label_ = "label";
-	char* cstr_ = &label_[0]; // I think this converts the string to a char* with the value of a pointer to the label string. I assume .writestring is looking for a char*, not a string
-	x = y = 0;
-	InterfaceWrite(x,y,cstr_, Font_6x8, patch.display);
-
-}
+//void UpdateLedTest()
+//{
+//	int x, y; // coords for writing to the LED
+//	patch.display.Fill(PF_DISP_MODE); // "dark" mode
+//	
+//	string label_ = "label";
+//	char* cstr_ = &label_[0]; // I think this converts the string to a char* with the value of a pointer to the label string. I assume .writestring is looking for a char*, not a string
+//	x = y = 0;
+//	InterfaceWrite(x,y,cstr_, Font_6x8, patch.display);
+//
+//}
 
 void UpdateInterface()
 {
